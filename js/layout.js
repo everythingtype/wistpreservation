@@ -45,6 +45,10 @@
 
 		if (anchor !== '') {
 			$('#'+anchor).addClass('active');
+		} else {
+			if ( $(".sectionwidth").css("float") == "left" ) {
+				$('#introduction').addClass('active').addClass('current');
+			}
 		}
 
 	}

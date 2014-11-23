@@ -22,7 +22,7 @@ header a { color: #000; }
 header a .numeral { width: 1.25em; display: inline-block; }
 header a .dots { color: #af976d; margin-right: .5em; }
 
-nav { padding: 0 60px 50px 60px;}
+nav { padding: 0 0 50px 60px;}
 nav ul { margin: 0; padding: 0; list-style: none; }
 nav li { margin: 0; padding: 0; }
 
@@ -35,8 +35,6 @@ section .close span { display: none; }
 #about { background: #c3beb8; }
 #contact { background: #af976d; }
 
-
-
 /* Has JS */
 
 .js header { position: relative; }
@@ -46,11 +44,37 @@ section .close span { display: none; }
 .js section { position: absolute; top: 0; right: 0; width: 0; }
 
 .js section.ready { 
-	-webkit-transition: width 0.3s;
-	-moz-transition: width 0.3s;
-	transition: width 0.3s;
+	-webkit-transform: translateX(0);
+	transform: translateX(0);
+	-webkit-transition: 0.3s width;
+	-moz-transition: 0.3s width;
+	transition: 0.3s width;
 }
 
 .js section.active { width: 100%; }
 
 .sectionwidth { width: 100%; }
+
+@media screen and (min-width: 720px) {
+	body { font-size: 28px; }
+	h2 { font-size: 28px; }
+	header { font-size: 25px; line-height: 1.24;  }
+
+	section .padding { padding: 75px 90px 90px 90px; }
+	.js nav { padding: 0 0 60px 65px;}
+}
+
+@media screen and (min-width: 1000px) {
+
+
+
+	section .close { display: none; }
+
+	.js header { width: 33.3333333333%; }
+
+
+	.js section.active { width: 66.6666666667%; }
+
+	.sectionwidth { width: 66.6666666667%; float: left; }
+
+}
