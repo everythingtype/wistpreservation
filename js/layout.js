@@ -1,18 +1,19 @@
 (function($) {
 
 	var zindex = 0;
+	var widewindow = false;
 
-	jQuery.fn.resetScreen = function() {
-
+	jQuery.fn.highlightNav = function() {
+		$('nav li').removeClass('active');
+		$(this).addClass('active');
 	}
 
 	jQuery.fn.openScreen = function() {
 
 		if ( !$(this).hasClass('current') ) {
 
-			$(this).removeClass('ready');
+			$(this).removeClass('animated');
 			$(this).removeClass('active');
-			$(this).resetScreen();
 
 			zindex++;
 
@@ -22,7 +23,8 @@
 
 			$(this).delay(1).queue(function() {
 
-				$(this).addClass('ready').addClass('active');
+				$('section').addClass('animated');
+				$(this).addClass('active');
 
 				$('section').removeClass('current');
 				$(this).addClass('current');
@@ -36,20 +38,36 @@
 	}
 
 	function closeScreens() {
-		$('section').addClass('ready').removeClass('active').removeClass('current');
+		$('section').addClass('animated').removeClass('active').removeClass('current');
+		$('nav li').removeClass('active');
+	}
+
+	function setupNav() {
+		if ( $(".sectionwidth").css("float") == "left" ) {
+			if ( widewindow == false ) {
+				widewindow = true;
+				$('header').addClass('animated');
+				setupVisibility();
+			}
+		} else {
+			if ( widewindow == true ) {
+				widewindow = false;
+			}
+		}
 	}
 
 	function setupVisibility() {
 
 		var anchor = $.param.fragment();
 
-		if (anchor !== '') {
-			$('#'+anchor).addClass('active');
-		} else {
+		if (anchor == '' ) {
 			if ( $(".sectionwidth").css("float") == "left" ) {
-				$('#introduction').addClass('active').addClass('current');
+				anchor = 'introduction';
 			}
 		}
+
+		$('nav #menu-' + anchor).highlightNav();
+		$('#' + anchor).addClass('active').addClass('current');
 
 	}
 
@@ -83,6 +101,7 @@
 	}
 
 	$(document).ready( function() {
+
 		$('body').addClass('js');
 		$('body').append('<div class="sectionwidth"></div>');
 		$('section .padding').append('<a class="close"><span>Close</span></a>');
@@ -97,14 +116,15 @@
 
 			history.pushState({}, "", hash);
 
-			$(hash).openScreen();	
+			$(hash).openScreen();
+			$(this).parent().highlightNav();
+
 		});
 
 		$('.close').live('click', function(event) {
 			history.pushState({}, "", " ");
 			closeScreens();
 		});
-
 
 	});
 
@@ -113,6 +133,7 @@
 
 	$(window).resize( function() {
 		setupSizes();
+		setupNav();
 	});
 
 	$(window).scroll(function() {
