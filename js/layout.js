@@ -2,6 +2,7 @@
 
 	var zindex = 0;
 	var widewindow = false;
+	var altlogo =  false;
 
 	jQuery.fn.highlightNav = function() {
 		$('nav li').removeClass('active');
@@ -11,6 +12,8 @@
 	jQuery.fn.openScreen = function() {
 
 		if ( !$(this).hasClass('current') ) {
+
+			updateLogo();
 
 			$(this).removeClass('animated');
 			$(this).removeClass('active');
@@ -35,6 +38,24 @@
 
 		}
 	
+	}
+
+	function updateLogo() {
+
+		if ( $(".sectionwidth").css("float") == "left" ) {
+
+			if ( altlogo == false ) {
+				$('.logoa').hide();
+				$('.logob').show();
+				altlogo = true;
+			} else {
+				$('.logob').hide();
+				$('.logoa').show();
+				altlogo = false;
+			}
+
+		}
+
 	}
 
 	function closeScreens() {
@@ -102,41 +123,42 @@
 
 	$(document).ready( function() {
 
-		$('body').addClass('js');
-		$('body').append('<div class="sectionwidth"></div>');
-		$('section .padding').append('<a class="close"><span>Close</span></a>');
+		if ( $('body').hasClass('supported') ) {
 
-		setupSizes();
+			$('body').addClass('js');
 
-		setupVisibility();
+			$('body').append('<div class="sectionwidth"></div>');
+			$('section .padding').append('<a class="close"><span>Close</span></a>');
 
-		$('nav a').live('click', function(event) {
-			event.preventDefault();
-			var hash = $(this).prop("hash");
+			setupSizes();
 
-			history.pushState({}, "", hash);
+			setupVisibility();
 
-			$(hash).openScreen();
-			$(this).parent().highlightNav();
+			$('nav a').live('click', function(event) {
+				event.preventDefault();
+				var hash = $(this).prop("hash");
+			
+				history.pushState({}, "", hash);
+			
+				$(hash).openScreen();
+				$(this).parent().highlightNav();
 
-		});
+			});
 
-		$('.close').live('click', function(event) {
-			history.pushState({}, "", " ");
-			closeScreens();
-		});
+			$('.close').live('click', function(event) {
+				history.pushState({}, "", " ");
+				closeScreens();
+			});
 
-	});
+		}
 
-	$(window).load( function() {
 	});
 
 	$(window).resize( function() {
-		setupSizes();
-		setupNav();
-	});
-
-	$(window).scroll(function() {
+		if ( $('body').hasClass('supported') ) {
+			setupSizes();
+			setupNav();
+		}
 	});
 
 })(jQuery);

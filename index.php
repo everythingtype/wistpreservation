@@ -6,7 +6,17 @@
 
 		<header>
 
-			<h1><img src="<?php echo get_stylesheet_directory_uri() ?>/images/wist-temp-logo.png" alt="<?php bloginfo( 'name' ); ?>" /></h1>
+			<h1><!--[if lte IE 9]>
+				<img src="<?php echo get_stylesheet_directory_uri() ?>/images/wist-logo.gif" alt="<?php bloginfo( 'name' ); ?>" />
+			<![endif]-->
+			<!--[if gt IE 10]>
+				<img class="logoa" src="<?php echo get_stylesheet_directory_uri() ?>/images/wist-logo-a.svg" alt="<?php bloginfo( 'name' ); ?>" />
+				<img class="logob" src="<?php echo get_stylesheet_directory_uri() ?>/images/wist-logo-b.svg" alt="<?php bloginfo( 'name' ); ?>" style="display: none;" />
+			<![endif]-->
+			<!--[if !IE]> -->
+				<img class="logoa" src="<?php echo get_stylesheet_directory_uri() ?>/images/wist-logo-a.svg" alt="<?php bloginfo( 'name' ); ?>" />
+				<img class="logob" src="<?php echo get_stylesheet_directory_uri() ?>/images/wist-logo-b.svg" alt="<?php bloginfo( 'name' ); ?>" style="display: none;" />
+			<!-- <![endif]--></h1>
 
 			<nav>
 				<ul>
@@ -21,8 +31,15 @@
 		<?php while ( have_rows('screen') ) : the_row(); ?>
 			<section id="<?php the_sub_field('url_slug'); ?>">
 				<div class="padding">
-					<h2><?php the_sub_field('roman_numeral'); ?>. <?php the_sub_field('title'); ?></h2>
+					<div class="spacer">
+						<div class="ratio"></div>
+						<h2><?php the_sub_field('roman_numeral'); ?>. <?php the_sub_field('title'); ?></h2>
+					</div>
 					<?php the_sub_field('copy'); ?>
+					<?php $image = get_sub_field('image');
+						if ( $image ) : ?>
+						<div class="image"><img src="<?php echo $image['url']; ?>" alt="<?php echo $image['title']; ?>" /></div>
+						<?php endif; ?>
 				</div>
 			</section>
 		<?php endwhile; ?>
