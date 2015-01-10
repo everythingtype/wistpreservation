@@ -2,7 +2,6 @@
 
 	var zindex = 0;
 	var widewindow = false;
-	var altlogo =  false;
 
 	jQuery.fn.highlightNav = function() {
 		$('nav li').removeClass('active');
@@ -12,8 +11,6 @@
 	jQuery.fn.openScreen = function() {
 
 		if ( !$(this).hasClass('current') ) {
-
-			updateLogo();
 
 			$(this).removeClass('animated');
 			$(this).removeClass('active');
@@ -38,24 +35,6 @@
 
 		}
 	
-	}
-
-	function updateLogo() {
-
-		if ( $(".sectionwidth").css("float") == "left" ) {
-
-			if ( altlogo == false ) {
-				$('.logoa').hide();
-				$('.logob').show();
-				altlogo = true;
-			} else {
-				$('.logob').hide();
-				$('.logoa').show();
-				altlogo = false;
-			}
-
-		}
-
 	}
 
 	function closeScreens() {

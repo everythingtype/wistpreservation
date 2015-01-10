@@ -21,7 +21,7 @@ a { color: #f1eee5; text-decoration: none; }
 
 img { width: 100%; }
 
-h1 { margin: 0 auto; padding: 30px 60px; position: relative; max-width: 285px; }
+h1 { margin: 0 auto; padding: 30px 60px; position: relative; }
 
 h2 { font-size: 18px; line-height: 1.2; margin: 0; }
 
@@ -31,6 +31,7 @@ header a .numeral { width: 1.25em; display: inline-block; }
 header a .dots { color: #af976d; margin-right: .5em; }
 
 nav { padding: 0 0 50px 60px;}
+nav p { font-weight: bold; padding-right: 1em; }
 nav ul { margin: 0; padding: 0; list-style: none; }
 nav li { margin: 0; padding: 0; }
 
@@ -47,6 +48,7 @@ section .close span { display: none; }
 #contact { background: #b44622; }
 
 .image { max-width: 350px; }
+
 
 /* Has JS */
 
@@ -66,19 +68,26 @@ section .close span { display: none; }
 
 .sectionwidth { width: 100%; }
 
-@media screen and (min-height: 400px) {
+@media screen and (min-height: 430px) {
 	.js nav { position: absolute; bottom: 0; }
 }
 
-
 @media screen and (min-width: 720px) {
-	body { font-size: 28px; }
-	h2 { font-size: 28px;  }
-	header { font-size: 25px; line-height: 1.24;  }
+	body { font-size: 24px; }
+
+	h1 { padding-top: 60px; }
+	h2 { font-size: 24px;  }
+
+	header { font-size: 24px; line-height: 1.24;  }
 
 	section .padding { padding: 75px 90px 90px 90px; }
 
 	.js nav { padding: 0 0 60px 65px;}
+}
+
+
+@media screen and (min-width: 769px) {
+	h1 { max-width: 285px; padding-top: 30px; }
 }
 
 @media screen and (min-width: 1000px) {

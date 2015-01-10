@@ -11,14 +11,15 @@
 			<![endif]-->
 			<!--[if gt IE 10]>
 				<img class="logoa" src="<?php echo get_stylesheet_directory_uri() ?>/images/wist-logo-a.svg" alt="<?php bloginfo( 'name' ); ?>" />
-				<img class="logob" src="<?php echo get_stylesheet_directory_uri() ?>/images/wist-logo-b.svg" alt="<?php bloginfo( 'name' ); ?>" style="display: none;" />
 			<![endif]-->
 			<!--[if !IE]> -->
 				<img class="logoa" src="<?php echo get_stylesheet_directory_uri() ?>/images/wist-logo-a.svg" alt="<?php bloginfo( 'name' ); ?>" />
-				<img class="logob" src="<?php echo get_stylesheet_directory_uri() ?>/images/wist-logo-b.svg" alt="<?php bloginfo( 'name' ); ?>" style="display: none;" />
 			<!-- <![endif]--></h1>
 
 			<nav>
+
+				<p>Wist Preservation Associates</p>
+
 				<ul>
 					<?php while ( have_rows('screen') ) : the_row(); ?>
 						<li id="menu-<?php the_sub_field('url_slug'); ?>"><a href="#<?php the_sub_field('url_slug'); ?>"><span class="numeral"><?php the_sub_field('roman_numeral'); ?></span><span class="dots">.....</span><span class="title"><?php the_sub_field('title'); ?></span></a></li>
